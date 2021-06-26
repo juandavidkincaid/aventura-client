@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
+import { Provider as StateProvider } from 'react-redux';
 
 import { app, AppTheme, theme } from '@aventura-core';
 import { ViewportStyle } from '@aventura-styling'
 import { NC } from '@aventura-util';
+import { store } from '@aventura-state';
 
 import {MarketView} from '@aventura-modules/market';
 
@@ -55,17 +57,19 @@ const App = NC<{}>('App', ({ }) => {
 app.retriveData();
 
 ReactDOM.render(<React.StrictMode>
-    <HelmetProvider>
-        <Helmet>
-            <link rel="preconnect" href="https://fonts.googleapis.com"/> 
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
-            <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Quicksand&family=Roboto&display=swap" rel="stylesheet"/>
-        </Helmet>
-        <Router>
-            <AppTheme.Provider>
-                <GlobalStyle />
-                <App />
-            </AppTheme.Provider>
-        </Router>
-    </HelmetProvider>
+    <StateProvider store={store}>
+        <HelmetProvider>
+            <Helmet>
+                <link rel="preconnect" href="https://fonts.googleapis.com"/>
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous"/>
+                <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Quicksand&family=Roboto&display=swap" rel="stylesheet"/>
+            </Helmet>
+            <Router>
+                <AppTheme.Provider>
+                    <GlobalStyle />
+                    <App />
+                </AppTheme.Provider>
+            </Router>
+        </HelmetProvider>
+    </StateProvider>
 </React.StrictMode>, document.getElementById('App'))
