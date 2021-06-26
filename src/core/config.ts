@@ -1,4 +1,4 @@
-import { Theme } from '@aventura-styling';
+import { Theme, ThemeProxy } from '@aventura-styling';
 
 import 'moment';
 import moment from 'momentz';
@@ -39,7 +39,10 @@ const theme = Theme.createTheme({
         e: '#b5c3f4'
     },
     fontSize: '1em',
-    fontFamily: "'Grenze', serif"
+    fontTitle: "'Roboto', sans-serif",
+    fontParagraph: "'Cormorant Garamond', serif",
+    fTitle: (theme: ThemeProxy)=>theme.fontTitle,
+    fParag: (theme: ThemeProxy)=>theme.fontParagraph,
 }, 'function');
 
 const AppTheme: InstanceType<typeof Theme> = Theme.accessTheme(theme);
