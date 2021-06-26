@@ -51,7 +51,7 @@ const SyledFooter = styled.div`
 
 const HeadingStyled = styled.div`
     ${FlexStyle}
-    width: 1100px;
+    width: min(1100px, 100%);
     height: 470px;
     flex-flow: row nowrap;
 
@@ -166,7 +166,7 @@ const MarketViewStyled = styled.div`
     ${GridStyle}
     ${CardStyle()}
     height: 100%;
-    width: 1366px;
+    width: min(1366px, 100%);
     ${ViewportStyle('MobileExtended')}{
         width: 100%;
     }
