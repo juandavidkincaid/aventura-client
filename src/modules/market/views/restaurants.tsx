@@ -1,4 +1,4 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 
@@ -14,11 +14,13 @@ import {
     ViewportStyle
 } from '@aventura-styling';
 import { theme } from '@aventura-core';
+import { useDispatch, useSelector } from '@aventura-state';
 
-import HeaderDesk from '@aventura-res/header.png';
-import FooterDesk from '@aventura-res/footer.png';
-import HeadingDesk from '@aventura-res/heading.png';
 import SampleRestaurantImg from '@aventura-res/sample_restaurant.png';
+
+import {
+    fetchRestaurants
+} from '../state';
 
 const RestaurantStyled = styled.div`
     ${GridStyle}
@@ -75,7 +77,7 @@ const Restaurant = NC<{
 
 const RestaurantsStyled = styled.div`
     ${FlexStyle}
-    width: 1100px;
+    width: min(1100px, 100%);
     ${ViewportStyle('MobileExtended')}{
         width: 100%;
     }
@@ -89,21 +91,23 @@ const RestaurantsStyled = styled.div`
 `;
 
 const Restaurants = NC('Restaurants', ({ }) => {
+    const dispatch = useDispatch();
+    const restaurants = useSelector(state=>state.market.restaurants.restaurants);
+    const status = useSelector(state=>state.market.restaurants.status);
+
+    useEffect(()=>{
+        if(status === 'idle'){
+            dispatch(fetchRestaurants());
+        }
+    }, [status, dispatch]);
+
     return <RestaurantsStyled>
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
-        <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' />
+        {status === 'resolved' && <>
+            {restaurants.map(r=>(
+                <Restaurant name={r.name} imgSrc={r.image.url} phone={r.phone} instagramProfile={r.instagramProfile} />
+            ))}
+        </>}
+        {/* <Restaurant name='Sample1' imgSrc={SampleRestaurantImg} phone='333-444-5555' instagramProfile='@testtesingtest' /> */}
     </RestaurantsStyled>;
 });
 
