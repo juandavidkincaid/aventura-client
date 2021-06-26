@@ -1,0 +1,84 @@
+{
+    "include": [
+        "./declarations/**/*"
+    ],
+    "exclude": [
+        "./node_modules/**/*"
+    ],
+    "files": [
+        "./src/app.tsx"
+    ],
+    "compilerOptions": {
+        "jsx": "preserve",
+        "strict": true,
+        "noImplicitAny": false,
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "paths": {
+            "@aventura-src": [
+                "./src/"
+            ],
+            "@aventura-src/*": [
+                "./src/*"
+            ],
+            "@aventura-core": [
+                "./src/core/"
+            ],
+            "@aventura-core/*": [
+                "./src/core/*"
+            ],
+            "@aventura-state": [
+                "./src/state/"
+            ],
+            "@aventura-state/*": [
+                "./src/state/*"
+            ],
+            "@aventura-util": [
+                "./src/util/"
+            ],
+            "@aventura-util/*": [
+                "./src/util/*"
+            ],
+            "@aventura-styling": [
+                "./src/styling/"
+            ],
+            "@aventura-styling/*": [
+                "./src/styling/*"
+            ],
+            "@aventura-res": [
+                "./src/res/"
+            ],
+            "@aventura-res/*": [
+                "./src/res/*"
+            ],
+            "@aventura-abs": [
+                "./src/abs/"
+            ],
+            "@aventura-abs/*": [
+                "./src/abs/*"
+            ],
+            "@aventura-components": [
+                "./src/components/"
+            ],
+            "@aventura-components/*": [
+                "./src/components/*"
+            ],
+            "@aventura-modules": [
+                "./src/modules/"
+            ],
+            "@aventura-modules/*": [
+                "./src/modules/*"
+            ],
+            "momentz": [
+                "./node_modules/moment-timezone/"
+            ],
+            "momentz/*": [
+                "./node_modules/moment-timezone/*"
+            ]
+        }
+    }
+}
