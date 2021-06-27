@@ -6,6 +6,8 @@ import {
 
 import { app } from '@aventura-core';
 
+// Restaurants State, Reducer, Actions, Types, Fetching Definition
+
 type RestaurantsInitialState = {
     restaurants: {
         id: string,

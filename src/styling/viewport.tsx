@@ -3,6 +3,7 @@ import { NC } from '@aventura-util';
 
 type ViewPortRule = null | string | [number | null, number | null];
 
+// ViewPort Clasifications
 const ViewPortTests = new Map<string, ViewPortRule>([
     ['Mobile', [0, 425]],
     ['MobileSmall', [0, 320]],
@@ -27,7 +28,7 @@ const ViewPortTests = new Map<string, ViewPortRule>([
     ['Fallback', [null, null]]
 ].map(([k, v])=>([k, v] as [string, ViewPortRule])));
 
-
+// Re Render on ViewPort Change - React
 const useViewport = () => {
     const [viewPort, setViewPort] = useState(window.screen.width);
     useEffect(()=>{
@@ -42,6 +43,7 @@ const useViewport = () => {
     return viewPort;
 };
 
+// Return based on viewport rule chosen
 const viewportSwitch = (rules: [ViewPortRule, any][]) => {
     return ()=>{
         const viewPort = window.screen.width;
@@ -65,6 +67,7 @@ const viewportSwitch = (rules: [ViewPortRule, any][]) => {
     }
 };
 
+// @media query style based on viewport rule
 const ViewportStyle = (rule: ViewPortRule)=>{
     if(typeof rule === 'string'){
         rule = ViewPortTests.get(rule) ?? [null, null];

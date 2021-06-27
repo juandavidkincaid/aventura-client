@@ -26,6 +26,8 @@ import {
     Restaurants
 } from './views/restaurants';
 
+// Market View Implementation
+
 const SyledHeader = styled.div`
     width: 100%;
     height: 228px;

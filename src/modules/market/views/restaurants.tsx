@@ -22,6 +22,8 @@ import {
     fetchRestaurants
 } from '../state';
 
+// Restaurants and Restaurant, holder and item layout implementation
+
 const RestaurantStyled = styled.div`
     ${GridStyle}
     width: 260px;

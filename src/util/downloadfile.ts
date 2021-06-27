@@ -1,5 +1,7 @@
 import {b64enc} from '.';
 
+// Download file utils
+
 const downloadBase64 = async (base64Content: string, mime: string, filename: string) => {
     const element = document.createElement('a');
     element.setAttribute('href', `data:${mime};base64,${base64Content}`);

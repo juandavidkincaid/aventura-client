@@ -10,6 +10,8 @@ const GetterFunction = Symbol('GetterFunction');
 const ThemeAccess = Symbol('ThemeAccess');
 type ThemeProxy = Record<any, any> & typeof Proxy;
 
+// Theme Proxy Class Definition
+
 const Theme = class Theme{
     hooks: Record<any, InstanceType<typeof EventEmitter>>;
     store: Record<any, any>;

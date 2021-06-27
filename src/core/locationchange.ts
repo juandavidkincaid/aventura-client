@@ -1,3 +1,5 @@
+// Add History Change handlers
+
 history.pushState = ( f => function pushState(this: any, ...args: any){
     var ret = f.apply(this, args);
     window.dispatchEvent(new Event('pushstate'));

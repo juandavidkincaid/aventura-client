@@ -5,6 +5,7 @@ import moment from 'momentz';
 import {Decimal} from 'decimal.js';
 import toformat from 'toformat';
 
+// Decimal Formating like 1000000 => 1.000.000,00
 toformat(Decimal);
 
 Decimal.format = {
@@ -26,6 +27,7 @@ declare global{
     }
 }
 
+// ReCaptcha use recaptcha.net domain, csp purposes
 window.recaptchaOptions = {
     useRecaptchaNet: true
 };

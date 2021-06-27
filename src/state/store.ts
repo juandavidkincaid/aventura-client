@@ -10,6 +10,8 @@ import {
 
 import * as market from '@aventura-modules/market/state';
 
+// Main Store Initialization
+
 const middleware = [
     ...getDefaultMiddleware()
 ];

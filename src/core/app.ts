@@ -15,8 +15,8 @@ declare global {
     }
 }
 
-type AppData = any /* Dapi.head.v1.AppData */ & {
-    client?: any /* Dapi.entities.v1.responses.Client */
+type AppData = any & {
+    client?: any
 } & Record<any, any>;
 
 const App = new class App {
@@ -37,6 +37,7 @@ const App = new class App {
     }
 
     addHashHandler(){
+        // Aplication's hash on Ctrl+Alt+h
         window.addEventListener('keydown', (event)=>{
             if(event.altKey && event.ctrlKey && event.key.toLocaleLowerCase() === 'h'){
                 alert(`
@@ -48,10 +49,11 @@ const App = new class App {
     }
 
     retriveData() {
+        // Retrive Server Initial Data, logged user, configuration, app version
         const encodedData = window.adat;
         try {
             if (encodedData) {
-                const data: any /* Dapi.head.v1.AppData */ = JSON.parse(atob(encodedData));
+                const data: any = JSON.parse(atob(encodedData));
                 this.updateData(data);
                 delete window.adat;
                 document.getElementById('adat')?.remove();
@@ -65,11 +67,13 @@ const App = new class App {
     }
 
     updateData(data: DeepPartial<AppData>) {
+        // Update local metadata store
         lodash.merge(this.data, data);
         this.events.emit('data.update');
     }
 
     useAppData() {
+        // Consume local metadata store in react component
         const forceUpdate = useReducer((s) => !s, false)[1];
         useEffect(() => {
             this.events.on('data.update', forceUpdate);

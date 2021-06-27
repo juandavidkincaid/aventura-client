@@ -7,6 +7,8 @@ import {
     restaurants
 } from '.';
 
+// Market Module's main reducer
+
 const reducer = combineReducers({
     restaurants: restaurants.reducer
 });
